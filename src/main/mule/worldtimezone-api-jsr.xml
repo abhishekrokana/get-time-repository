@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="4b61db9e-feab-4646-b8d7-d276bf334236" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="dcd69405-c5c7-4b30-913f-a964ef331c9a">
+		<http:request-connection host="localhost" port="8081" />
+	</http:request-config>
+	<flow name="worldtimezone-api-jsrFlow" doc:id="f73f1efb-d338-4cd4-89a0-cf6a2160f16b" >
+		<http:listener doc:name="Listener" doc:id="700e9bef-7e83-45d5-b8e8-b3b370bcd998" config-ref="HTTP_Listener_config" path="/jsr"/>
+		<http:request method="GET" doc:name="Request" doc:id="59a8c60d-a1bc-4357-a1fd-784083eba24d" config-ref="HTTP_Request_configuration" path="/test">
+		</http:request>
+	</flow>
+	<flow name="worldtimezone-api-jsrFlow1" doc:id="13b683b0-e0ca-46b6-b705-d95982c33e4f" >
+		<http:listener doc:name="Listener" doc:id="cd067531-a68f-4f64-a999-2c9c86d2036f" config-ref="HTTP_Listener_config" path="/test" allowedMethods="POST"/>
+		<set-payload value="#['Jai Shree Ram']" doc:name="Set Payload" doc:id="5a6a71c9-3ea0-4adf-9927-293ba0442f8a" />
+	</flow>
+</mule>
